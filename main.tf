@@ -69,7 +69,7 @@ resource "aws_security_group_rule" "docker" {
   from_port   = 2376
   to_port     = 2376
   protocol    = "tcp"
-  cidr_blocks = var.gitlab_runner_ssh_cidr_blocks
+  cidr_blocks = ["0.0.0.0/0"]
 
   security_group_id = aws_security_group.docker_machine.id
 }
@@ -79,7 +79,7 @@ resource "aws_security_group_rule" "ssh" {
   from_port   = 22
   to_port     = 22
   protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = var.docker_ssh_cidr_blocks
 
   security_group_id = aws_security_group.docker_machine.id
 }
